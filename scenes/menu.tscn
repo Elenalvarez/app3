@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://c42itvheh0f01"]
+
+[ext_resource type="Texture2D" uid="uid://l6x2ue0il3qr" path="res://assets/Pixel Adventure 1/Free/Background/Background_2.png" id="1_n5jxp"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_vbqba"]
+[ext_resource type="PackedScene" uid="uid://c7bkohukbq51" path="res://scenes/players/player_1.tscn" id="2_w51cj"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbqba")
+player_scene = ExtResource("2_w51cj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_n5jxp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -130.5
+offset_right = 171.0
+offset_bottom = 130.5
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Host" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Join"
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Play"
+
+[node name="PlayerName" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 484.0
+offset_right = 547.0
+offset_bottom = 595.0
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Name"
+alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
