@@ -6,6 +6,7 @@ const PORT = 8531
 @onready var join_button = $VBoxContainer/Join
 @onready var play_button = $VBoxContainer/Play
 @onready var player_name = $PlayerName
+@onready var ip_server = $IpServer
 
 @export var player_scene: PackedScene
 
@@ -63,7 +64,7 @@ func _on_host_pressed():
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client("192.168.1.45", PORT)
+	peer.create_client(ip_server.text, PORT)
 	multiplayer.multiplayer_peer = peer
 	disable_buttons(false)
 
