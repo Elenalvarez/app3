@@ -1,6 +1,6 @@
 extends Control
 
-const PORT = 135
+const PORT = 8531
 
 @onready var host_button = $VBoxContainer/Host
 @onready var join_button = $VBoxContainer/Join
@@ -63,7 +63,7 @@ func _on_host_pressed():
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client("127.0.0.1", PORT)
+	peer.create_client("192.168.1.45", PORT)
 	multiplayer.multiplayer_peer = peer
 	disable_buttons(false)
 

@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://1gb3cs6da4v3"]
-
-[node name="Camera" type="Camera2D"]
-offset = Vector2(0, -48)
-rotation_smoothing_enabled = true
-drag_vertical_enabled = true
-drag_top_margin = 1.0
-drag_bottom_margin = 0.0

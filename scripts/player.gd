@@ -3,6 +3,7 @@ class_name Player
 
 var axis: Vector2 = Vector2.ZERO
 var death = false
+var kill_score= 100
 
 @export var gui: CanvasLayer
 @export var speed = 128
@@ -15,6 +16,8 @@ var death = false
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	if is_multiplayer_authority():
+		gui.visible = true
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -31,7 +34,9 @@ func _input(event):
 
 func get_axis()-> Vector2:
 	if is_multiplayer_authority():
+		var vector = gui.get_node("Joystick").posVector
 		axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+		axis.x = vector.x
 	return axis.normalized()
 
 func motion_ctrl():
@@ -51,12 +56,22 @@ func motion_ctrl():
 			sprite.set_animation("jump")
 		else:
 			sprite.set_animation("fall")
+	play_animation.rpc()
+
+@rpc("call_local")
+func play_animation():
 	sprite.play()
 
 func death_ctrl():
 	velocity.x = 0
 	velocity.y += gravity
 	move_and_slide()
+	eliminate.rpc()
+
+@rpc("call_local")
+func eliminate():
+	get_tree().create_timer(0,2).timeout
+	queue_free()
 
 func jump_ctrl(power: float):
 	velocity.y = -jump * power
@@ -72,7 +87,14 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func _on_hit_point_body_entered(body):
-	if body is Enemy and velocity.y >= 0:
+	if body is Player and velocity.y >= 0:
 		audio_hit.play()
-		body.damage_ctrl(1)
+		body.damage_ctrl()
+		change_score(kill_score)
 		jump_ctrl(0.75)
+
+func change_score(score: int):
+	for i in GameManager.Players:
+		if str(GameManager.Players[i].id) == name:
+			GameManager.Players[i].score += score
+

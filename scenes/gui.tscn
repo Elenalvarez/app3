@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://3s0grscupi1u"]
+[gd_scene load_steps=4 format=3 uid="uid://3s0grscupi1u"]
+
+[ext_resource type="PackedScene" uid="uid://danht5rdmde06" path="res://scenes/joystick.tscn" id="1_j2uf6"]
+[ext_resource type="Texture2D" uid="uid://b86qi53uo2b10" path="res://assets/ui/LargeHandleFilledGrey.png" id="2_bm0nw"]
 
 [sub_resource type="Theme" id="Theme_an5qy"]
 
@@ -20,3 +23,11 @@ text = "SCORE: 0000"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="Joystick" parent="." instance=ExtResource("1_j2uf6")]
+position = Vector2(140, 962)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(1950, 896)
+texture_normal = ExtResource("2_bm0nw")
+action = "ui_accept"

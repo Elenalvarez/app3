@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://danht5rdmde06"]
+
+[ext_resource type="Script" path="res://scripts/joystick.gd" id="1_42hpv"]
+[ext_resource type="Texture2D" uid="uid://dnf3g4jtqgm1j" path="res://assets/ui/JoystickSplitted.png" id="2_l5r4v"]
+[ext_resource type="Texture2D" uid="uid://cix6ubg01cvg2" path="res://assets/ui/SmallHandleFilledGrey.png" id="3_b3yi1"]
+[ext_resource type="Script" path="res://scripts/Circle.gd" id="4_qp4o5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2a72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35cuf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b4e6c"]
+
+[node name="Joystick" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_42hpv")
+
+[node name="Ring" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_l5r4v")
+
+[node name="Circle" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_b3yi1")
+script = ExtResource("4_qp4o5")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 76.0
+offset_bottom = 76.0
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v2a72")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_35cuf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4e6c")
+flat = true
+
+[connection signal="button_down" from="Button" to="Circle" method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="Circle" method="_on_button_button_up"]

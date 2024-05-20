@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://3gn2nc3xxrhm"]
+[gd_scene load_steps=7 format=3 uid="uid://3gn2nc3xxrhm"]
 
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="1_6xryc"]
-[ext_resource type="PackedScene" uid="uid://3s0grscupi1u" path="res://scenes/gui.tscn" id="1_kynvs"]
 [ext_resource type="Texture2D" uid="uid://l6x2ue0il3qr" path="res://assets/Pixel Adventure 1/Free/Background/Background_2.png" id="3_rngwn"]
 [ext_resource type="Texture2D" uid="uid://bg2rsc7py5qhx" path="res://assets/Pixel Adventure 1/Free/Background/Background_1.png" id="4_exchv"]
 [ext_resource type="Texture2D" uid="uid://wdcxodngh6au" path="res://assets/Pixel Adventure 1/Free/Terrain/Terrain (16x16).png" id="5_e08ul"]
@@ -455,8 +454,6 @@ sources/0 = SubResource("TileSetAtlasSource_ayest")
 [node name="Level" type="Node2D"]
 script = ExtResource("1_6xryc")
 
-[node name="GUI" parent="." instance=ExtResource("1_kynvs")]
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
@@ -487,6 +484,10 @@ format = 2
 
 [node name="Traps" type="Node" parent="."]
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Players" type="Node" parent="."]
 
 [node name="SpawnLocations" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/players/player_1.tscn")
+spawn_path = NodePath("../Player")
