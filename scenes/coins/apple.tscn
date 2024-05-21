@@ -179,6 +179,7 @@ animations = [{
 }]
 
 [node name="Apple" instance=ExtResource("1_82rrc")]
+function = "big"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ivsou")

@@ -11,7 +11,7 @@ func _ready():
 	maxLenght *= joystick.scale.x
 
 func _process(delta):
-	if pressing:
+	if pressing and not joystick.get_parent().get_node("TouchScreenButton").is_pressed():
 		if get_global_mouse_position().distance_to(joystick.global_position) <= maxLenght:
 			global_position = get_global_mouse_position()
 		else:

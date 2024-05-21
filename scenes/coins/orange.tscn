@@ -179,6 +179,7 @@ animations = [{
 }]
 
 [node name="Orange" instance=ExtResource("1_0thne")]
+function = "jump"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ivsou")

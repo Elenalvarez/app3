@@ -179,7 +179,9 @@ animations = [{
 }]
 
 [node name="Cherry" instance=ExtResource("1_cm1ny")]
+function = "shield"
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ivsou")
-animation = &"idle"
+frame = 5
+frame_progress = 1.0

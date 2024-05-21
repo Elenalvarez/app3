@@ -13,6 +13,7 @@ var kill_score= 100
 @onready var sprite = $AnimatedSprite2D
 @onready var audio_jump = $Audio/Jump
 @onready var audio_hit = $Audio/Hit
+@onready var timer = $Timer
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
@@ -87,7 +88,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func _on_hit_point_body_entered(body):
-	if body is Player and velocity.y >= 0:
+	if body is Player and velocity.y >= 0 and body != self:
 		audio_hit.play()
 		body.damage_ctrl()
 		change_score(kill_score)
@@ -97,4 +98,28 @@ func change_score(score: int):
 	for i in GameManager.Players:
 		if str(GameManager.Players[i].id) == name:
 			GameManager.Players[i].score += score
+
+func make_big():
+	scale *= 1.5
+	timer.start()
+	await timer.timeout
+	scale /= 1.5
+
+func increase_speed():
+	speed *= 2
+	sprite.speed_scale *= 1.5
+	timer.start()
+	await timer.timeout
+	speed /= 2
+	sprite.speed_scale /= 1.5
+
+func super_jump():
+	jump *= 1.25
+	timer.start()
+	await timer.timeout
+	jump /= 1.25
+
+func shield():
+	$AnimationPlayer.play("shield")
+
 
