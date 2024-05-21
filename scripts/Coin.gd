@@ -4,10 +4,11 @@ extends Area2D
 @export var function: String
 
 func _on_body_entered(body):
-	if body is Player:
+	if body is Player and not body.is_powered:
 		body.change_score(score)
 		$AnimatedSprite2D.set_animation("pick")
 		$AudioStreamPlayer.play()
+		body.timebar = true
 		match function:
 			"big":
 				make_big(body)

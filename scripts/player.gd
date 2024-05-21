@@ -4,6 +4,8 @@ class_name Player
 var axis: Vector2 = Vector2.ZERO
 var death = false
 var kill_score= 100
+var timebar = false
+var is_powered = false
 
 @export var gui: CanvasLayer
 @export var speed = 128
@@ -28,6 +30,12 @@ func _process(delta):
 		death_ctrl()
 	else:
 		motion_ctrl()
+	
+	if timebar:
+		gui.get_node("timebar").value = timer.time_left * gui.get_node("timebar").max_value/timer.wait_time
+		gui.get_node("timebar").visible = true
+	else:
+		gui.get_node("timebar").visible = false
 
 func _input(event):
 	if not death and is_on_floor() and event.is_action_pressed("ui_accept") and is_multiplayer_authority():
@@ -100,26 +108,40 @@ func change_score(score: int):
 			GameManager.Players[i].score += score
 
 func make_big():
+	is_powered = true
 	scale *= 1.5
 	timer.start()
 	await timer.timeout
 	scale /= 1.5
+	timebar = false
+	is_powered = false
 
 func increase_speed():
+	is_powered = true
 	speed *= 2
 	sprite.speed_scale *= 1.5
 	timer.start()
 	await timer.timeout
 	speed /= 2
 	sprite.speed_scale /= 1.5
+	timebar = false
+	is_powered = false
 
 func super_jump():
+	is_powered = true
 	jump *= 1.25
 	timer.start()
 	await timer.timeout
 	jump /= 1.25
+	timebar = false
+	is_powered = false
 
 func shield():
+	is_powered = true
 	$AnimationPlayer.play("shield")
+	timer.start()
+	await timer.timeout
+	timebar = false
+	is_powered = false
 
 

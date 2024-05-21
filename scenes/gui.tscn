@@ -1,28 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://3s0grscupi1u"]
+[gd_scene load_steps=5 format=3 uid="uid://3s0grscupi1u"]
 
+[ext_resource type="Texture2D" uid="uid://chmqvcefhg07p" path="res://assets/ui/Pixel UI pack 3/time_bar.png" id="1_blumw"]
 [ext_resource type="PackedScene" uid="uid://danht5rdmde06" path="res://scenes/joystick.tscn" id="1_j2uf6"]
 [ext_resource type="Texture2D" uid="uid://b86qi53uo2b10" path="res://assets/ui/LargeHandleFilledGrey.png" id="2_bm0nw"]
-
-[sub_resource type="Theme" id="Theme_an5qy"]
+[ext_resource type="Texture2D" uid="uid://fylc0chx0im" path="res://assets/ui/Pixel UI pack 3/time_bar_progress.png" id="2_ojwdp"]
 
 [node name="GUI" type="CanvasLayer"]
 process_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_an5qy")
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "SCORE: 0000"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="timebar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 1700.0
+offset_top = 30.0
+offset_right = 3860.0
+offset_bottom = 1110.0
+scale = Vector2(8.8, 7)
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource("1_blumw")
+texture_progress = ExtResource("2_ojwdp")
 
 [node name="Joystick" parent="." instance=ExtResource("1_j2uf6")]
 position = Vector2(140, 962)
