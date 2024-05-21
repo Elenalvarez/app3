@@ -35,3 +35,15 @@ func _on_button_button_down():
 
 func _on_button_button_up():
 	pressing = false
+
+
+func _on_stick_input_event(viewport, event, shape_idx):
+	if event is InputEventScreenTouch and event.pressed:
+		pressing = true
+	
+	if event is InputEventScreenTouch and not event.pressed:
+		pressing = false
+
+func _on_pantalla_input_event(viewport, event, shape_idx):
+	if event is InputEventScreenTouch and not event.pressed:
+		pressing = false

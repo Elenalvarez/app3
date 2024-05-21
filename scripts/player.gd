@@ -36,19 +36,19 @@ func _input(event):
 func get_axis()-> Vector2:
 	if is_multiplayer_authority():
 		var vector = gui.get_node("Joystick").posVector
-		axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 		axis.x = vector.x
 	return axis.normalized()
 
 func motion_ctrl():
-	if not get_axis().x == 0:
-		sprite.scale.x = get_axis().x
-	velocity.x = get_axis().x * speed
+	var temp = get_axis()
+	if not temp.x == 0:
+		sprite.scale.x = temp.x
+	velocity.x = temp.x * speed
 	velocity.y += gravity
 	move_and_slide()
 	
 	if is_on_floor():
-		if not get_axis().x == 0:
+		if not temp.x == 0:
 			sprite.set_animation("run")
 		else:
 			sprite.set_animation("idle")

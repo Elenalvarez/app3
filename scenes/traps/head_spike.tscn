@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://88oghrn1upoh"]
+
+[ext_resource type="PackedScene" uid="uid://cxtidjoeqwo18" path="res://scenes/traps/trap.tscn" id="1_fdcdd"]
+[ext_resource type="Texture2D" uid="uid://8hq7qs2pstbl" path="res://assets/Pixel Adventure 1/Free/Traps/Spike Head/Idle.png" id="2_hqmhg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b05mx"]
+atlas = ExtResource("2_hqmhg")
+region = Rect2(0, 0, 54, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlurs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b05mx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucrs3"]
+radius = 18.5607
+
+[node name="Trap" instance=ExtResource("1_fdcdd")]
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_qlurs")
+autoplay = "default"
+frame_progress = 0.871024
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_ucrs3")

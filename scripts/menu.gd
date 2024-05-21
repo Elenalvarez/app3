@@ -14,15 +14,18 @@ var peer = ENetMultiplayerPeer.new()
 
 func _ready():
 	multiplayer.peer_connected.connect(peer_connected)
-	multiplayer.peer_connected.connect(peer_disconnected)
+	multiplayer.peer_disconnected.connect(peer_disconnected)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
+	if "--server" in OS.get_cmdline_args():
+		hostGame()
 
 func peer_connected(id):
 	print("Player connected " + str(id))
 
 func peer_disconnected(id):
 	print("Player disconnected " + str(id))
+	GameManager.Players.erase(id)
 
 func connected_to_server():
 	print("Connected to server")
@@ -50,23 +53,29 @@ func disable_buttons(is_host: bool):
 	host_button.disabled = true
 	join_button.disabled = true
 
-func _on_host_pressed():
+func hostGame():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, 4)
 	
 	if error != OK:
 		print("cannot host: " + error)
 		return
-	
+	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)	
 	multiplayer.multiplayer_peer = peer
-	disable_buttons(true)
+	print("Waiting for players...")
+	
+
+func _on_host_pressed():
+	hostGame()
 	sendPlayerInformation(player_name.text, multiplayer.get_unique_id())
+	
 
 func _on_join_pressed():
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(ip_server.text, PORT)
+	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.multiplayer_peer = peer
-	disable_buttons(false)
+	disable_buttons(true)
 
 func _on_play_pressed():
 	select_level.rpc("res://scenes/levels/prueba.tscn")

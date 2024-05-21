@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5fo37rlbi52"]
+
+[ext_resource type="PackedScene" uid="uid://cxtidjoeqwo18" path="res://scenes/traps/trap.tscn" id="1_sgjm4"]
+[ext_resource type="Texture2D" uid="uid://dfuky3qc8ldaf" path="res://assets/Pixel Adventure 1/Free/Traps/Spikes/Idle.png" id="2_lui0l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gydhd"]
+atlas = ExtResource("2_lui0l")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i8v88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gydhd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2pxf"]
+size = Vector2(11, 5)
+
+[node name="Spikes" instance=ExtResource("1_sgjm4")]
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_i8v88")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_x2pxf")

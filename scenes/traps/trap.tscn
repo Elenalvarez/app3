@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxtidjoeqwo18"]
+
+[ext_resource type="Script" path="res://scripts/trap.gd" id="1_r8fej"]
+
+[node name="Trap" type="Area2D"]
+collision_layer = 16
+monitorable = false
+script = ExtResource("1_r8fej")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

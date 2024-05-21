@@ -25,6 +25,9 @@ layer_0/tile_data = PackedInt32Array(3801098, 393216, 0, 3801099, 458752, 0, 380
 [node name="Apple" parent="Fruits" index="0" instance=ExtResource("6_xw7yu")]
 position = Vector2(559, 853)
 
+[node name="Player1" parent="Players" index="0" instance=ExtResource("2_lj441")]
+position = Vector2(310, 848)
+
 [node name="0" type="Marker2D" parent="SpawnLocations" index="0" groups=["PlayerSpawnPoint"]]
 position = Vector2(306, 841)
 
@@ -35,7 +38,7 @@ position = Vector2(445, 843)
 position = Vector2(628, 853)
 
 [node name="Orange" parent="." index="9" instance=ExtResource("8_xgv8h")]
-position = Vector2(386, 856)
+position = Vector2(687, 852)
 
 [node name="Cherry" parent="." index="10" instance=ExtResource("9_yqr2l")]
-position = Vector2(474, 854)
+position = Vector2(756, 853)

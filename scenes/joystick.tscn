@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://danht5rdmde06"]
+[gd_scene load_steps=10 format=3 uid="uid://danht5rdmde06"]
 
 [ext_resource type="Script" path="res://scripts/joystick.gd" id="1_42hpv"]
 [ext_resource type="Texture2D" uid="uid://dnf3g4jtqgm1j" path="res://assets/ui/JoystickSplitted.png" id="2_l5r4v"]
@@ -10,6 +10,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35cuf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b4e6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glyyu"]
+size = Vector2(53.8363, 205.253)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ovck3"]
+radius = 75.8024
 
 [node name="Joystick" type="Node2D"]
 process_mode = 3
@@ -25,6 +31,7 @@ texture = ExtResource("3_b3yi1")
 script = ExtResource("4_qp4o5")
 
 [node name="Button" type="Button" parent="."]
+visible = false
 offset_left = -75.0
 offset_top = -75.0
 offset_right = 76.0
@@ -34,5 +41,19 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_35cuf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_b4e6c")
 flat = true
 
+[node name="pantalla" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pantalla"]
+position = Vector2(613, -558.259)
+scale = Vector2(39.4529, 6.89628)
+shape = SubResource("RectangleShape2D_glyyu")
+
+[node name="stick" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stick"]
+shape = SubResource("CircleShape2D_ovck3")
+
 [connection signal="button_down" from="Button" to="Circle" method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="Circle" method="_on_button_button_up"]
+[connection signal="input_event" from="pantalla" to="Circle" method="_on_pantalla_input_event"]
+[connection signal="input_event" from="stick" to="Circle" method="_on_stick_input_event"]
