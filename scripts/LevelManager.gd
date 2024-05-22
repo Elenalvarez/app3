@@ -18,5 +18,13 @@ func _ready():
 		index += 1
 
 
-func _process(delta):
-	pass
+func respawn(player: Player):
+	var spawn_point_list = get_tree().get_nodes_in_group("PlayerSpawnPoint")
+	player.global_position = spawn_point_list.pick_random().global_position
+	player.death = false
+	player.visible = true
+
+
+func _on_fall_zone_body_entered(body):
+	if body is Player:
+		body.damage_ctrl()

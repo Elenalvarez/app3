@@ -324,3 +324,6 @@ animation = &"double_jump"
 autoplay = "idle"
 frame = 5
 frame_progress = 1.0
+
+[node name="Timer" parent="." index="8"]
+wait_time = 7.0

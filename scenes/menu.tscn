@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c42itvheh0f01"]
+[gd_scene load_steps=11 format=3 uid="uid://c42itvheh0f01"]
 
 [ext_resource type="Texture2D" uid="uid://l6x2ue0il3qr" path="res://assets/Pixel Adventure 1/Free/Background/Background_2.png" id="1_n5jxp"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_vbqba"]
-[ext_resource type="PackedScene" uid="uid://c7bkohukbq51" path="res://scenes/players/player_1.tscn" id="2_w51cj"]
+[ext_resource type="Texture2D" uid="uid://cwhd1o3r3f3vo" path="res://assets/Pixel Adventure 1/MaskGuy-portrait.png" id="4_bdipm"]
+[ext_resource type="Texture2D" uid="uid://dpwha0tpriqps" path="res://assets/Pixel Adventure 1/MaskGuy-portrait-disabled.png" id="5_bd483"]
+[ext_resource type="Texture2D" uid="uid://cpgq08284our1" path="res://assets/Pixel Adventure 1/NinjaFrog-portrait.png" id="5_oujv2"]
+[ext_resource type="Texture2D" uid="uid://bc3lgwid3m73y" path="res://assets/Pixel Adventure 1/PinkMan-portrait.png" id="6_45f8k"]
+[ext_resource type="Texture2D" uid="uid://dqncvb6gqspeo" path="res://assets/Pixel Adventure 1/NinjaFrog-portrait-disabled.png" id="7_i1f33"]
+[ext_resource type="Texture2D" uid="uid://4dqe6rghol8q" path="res://assets/Pixel Adventure 1/VirtualGirl-portrait.png" id="7_pvvv7"]
+[ext_resource type="Texture2D" uid="uid://bk0l7xy87yh53" path="res://assets/Pixel Adventure 1/PinkMan-portrait-disabled.png" id="9_cencq"]
+[ext_resource type="Texture2D" uid="uid://b0ba3a56vf6rb" path="res://assets/Pixel Adventure 1/VirtualGirl-portrait-disabled.png" id="11_0t7op"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,7 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vbqba")
-player_scene = ExtResource("2_w51cj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -23,54 +29,98 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_n5jxp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -130.0
-offset_right = 235.0
-offset_bottom = 131.0
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="Host" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Host"
-
-[node name="Join" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Join"
-
-[node name="Play" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-disabled = true
-text = "Play"
-
-[node name="PlayerName" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 260.0
-offset_top = 412.0
-offset_right = 613.0
-offset_bottom = 523.0
-theme_override_font_sizes/font_size = 50
-placeholder_text = "Name"
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_top = -97.0
+offset_right = -871.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="IpServer" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 260.0
-offset_top = 550.0
-offset_right = 613.0
-offset_bottom = 661.0
+[node name="IpServer" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 50
 placeholder_text = "127.0.0.1"
 alignment = 1
+expand_to_text_length = true
 
-[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="VBoxContainer/Join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[node name="PlayerName" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Name"
+alignment = 1
+expand_to_text_length = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1859.0
+offset_top = -97.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="Join" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = " Join "
+
+[node name="Play" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = " Play "
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -895.0
+offset_top = -325.0
+offset_right = 895.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MaskGuy" type="TextureButton" parent="HBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("4_bdipm")
+texture_disabled = ExtResource("5_bd483")
+
+[node name="NinjaFrog" type="TextureButton" parent="HBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("5_oujv2")
+texture_disabled = ExtResource("7_i1f33")
+
+[node name="PinkMan" type="TextureButton" parent="HBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("6_45f8k")
+texture_disabled = ExtResource("9_cencq")
+
+[node name="VirtualGirl" type="TextureButton" parent="HBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("7_pvvv7")
+texture_disabled = ExtResource("11_0t7op")
+
+[connection signal="pressed" from="HBoxContainer2/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer3/MaskGuy" to="." method="_on_mask_guy_pressed"]

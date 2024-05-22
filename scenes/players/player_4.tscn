@@ -266,9 +266,10 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Player1" instance=ExtResource("1_3t8o6")]
+[node name="Player4" instance=ExtResource("1_3t8o6")]
+gravity = 13
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_hnwmm")
 animation = &"run"
 autoplay = "idle"

@@ -266,9 +266,13 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="Player1" instance=ExtResource("1_pmcut")]
+[node name="Player3" instance=ExtResource("1_pmcut")]
+speed = 100
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_hnwmm")
 animation = &"run"
 autoplay = "idle"
+
+[node name="Timer" parent="." index="8"]
+wait_time = 10.0

@@ -6,6 +6,8 @@ var death = false
 var kill_score= 100
 var timebar = false
 var is_powered = false
+var jump_count = 0
+var max_jump = 2
 
 @export var gui: CanvasLayer
 @export var speed = 128
@@ -36,10 +38,14 @@ func _process(delta):
 		gui.get_node("timebar").visible = true
 	else:
 		gui.get_node("timebar").visible = false
+	
+	if is_on_floor():
+		jump_count = 0
 
 func _input(event):
-	if not death and is_on_floor() and event.is_action_pressed("ui_accept") and is_multiplayer_authority():
+	if not death and jump_count < max_jump and event.is_action_pressed("ui_accept") and is_multiplayer_authority():
 		jump_ctrl(1)
+		jump_count+= 1
 
 func get_axis()-> Vector2:
 	if is_multiplayer_authority():
@@ -80,7 +86,8 @@ func death_ctrl():
 @rpc("call_local")
 func eliminate():
 	get_tree().create_timer(0,2).timeout
-	queue_free()
+	visible = false
+	get_parent().get_parent().respawn(self)
 
 func jump_ctrl(power: float):
 	velocity.y = -jump * power
