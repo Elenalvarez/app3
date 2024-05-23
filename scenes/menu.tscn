@@ -124,3 +124,6 @@ texture_disabled = ExtResource("11_0t7op")
 [connection signal="pressed" from="HBoxContainer2/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="HBoxContainer2/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="HBoxContainer3/MaskGuy" to="." method="_on_mask_guy_pressed"]
+[connection signal="pressed" from="HBoxContainer3/NinjaFrog" to="." method="_on_ninja_frog_pressed"]
+[connection signal="pressed" from="HBoxContainer3/PinkMan" to="." method="_on_pink_man_pressed"]
+[connection signal="pressed" from="HBoxContainer3/VirtualGirl" to="." method="_on_virtual_girl_pressed"]

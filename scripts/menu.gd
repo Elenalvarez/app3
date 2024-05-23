@@ -8,6 +8,9 @@ const PORT = 8531
 @onready var ip_server = $HBoxContainer/IpServer
 @onready var characters = $HBoxContainer3
 @onready var maskguy_button = $HBoxContainer3/MaskGuy
+@onready var ninjafrog_button = $HBoxContainer3/NinjaFrog
+@onready var pinkman_button = $HBoxContainer3/PinkMan
+@onready var virtualgirl_button = $HBoxContainer3/VirtualGirl
 
 func _ready():
 	multiplayer.peer_connected.connect(peer_connected)
@@ -26,7 +29,7 @@ func peer_disconnected(id):
 
 func connected_to_server():
 	print("Connected to server")
-	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "any")
+	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "")
 
 func connection_failed():
 	print("Connection failed")
@@ -42,16 +45,10 @@ func sendPlayerInformation(my_name: String, id: int, character: String):
 		}
 	else:
 		GameManager.Players[id]["character"]= character
-		print(GameManager.Players[id]["character"])
 	
 	if multiplayer.is_server():
 		for i in GameManager.Players:
 			sendPlayerInformation.rpc(GameManager.Players[i].name, i, GameManager.Players[i].character)
-
-func disable_buttons():
-	characters.visible = true
-	play_button.disabled = false
-	join_button.disabled = true
 
 func hostGame():
 	var peer = ENetMultiplayerPeer.new()
@@ -69,10 +66,14 @@ func _on_join_pressed():
 	peer.create_client(ip_server.text, PORT)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.multiplayer_peer = peer
-	disable_buttons()
+	join_button.disabled = true
+	characters.visible = true
 
 func _on_play_pressed():
-	select_level.rpc("res://scenes/levels/prueba.tscn")
+	if all_choose():
+		select_level.rpc("res://scenes/levels/prueba.tscn")
+	else:
+		print("Espera a que todos elijan personaje")
 
 @rpc("any_peer", "call_local")
 func select_level(file: String):
@@ -83,12 +84,48 @@ func choose_character(character: String):
 	match character:
 		"MaskGuy":
 			maskguy_button.disabled = true
-			sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), character)
+		"NinjaFrog":
+			ninjafrog_button.disabled = true
+		"PinkMan":
+			pinkman_button.disabled = true
+		"VirtualGirl":
+			virtualgirl_button.disabled = true
+
+func all_choose():
+	var ready = true
+	for player in GameManager.Players:
+		if GameManager.Players[player].character == "":
+			ready = false
+	return ready
 
 func _on_mask_guy_pressed():
 	choose_character.rpc("MaskGuy")
+	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "MaskGuy")
+	ninjafrog_button.disabled = true
+	pinkman_button.disabled = true
+	virtualgirl_button.disabled = true
+	play_button.disabled = false
 
+func _on_ninja_frog_pressed():
+	choose_character.rpc("NinjaFrog")
+	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "NinjaFrog")
+	maskguy_button.disabled = true
+	pinkman_button.disabled = true
+	virtualgirl_button.disabled = true
+	play_button.disabled = false
 
+func _on_pink_man_pressed():
+	choose_character.rpc("PinkMan")
+	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "PinkMan")
+	maskguy_button.disabled = true
+	ninjafrog_button.disabled = true
+	virtualgirl_button.disabled = true
+	play_button.disabled = false
 
-
-
+func _on_virtual_girl_pressed():
+	choose_character.rpc("VirtualGirl")
+	sendPlayerInformation.rpc_id(1, player_name.text, multiplayer.get_unique_id(), "VirtualGirl")
+	maskguy_button.disabled = true
+	ninjafrog_button.disabled = true
+	pinkman_button.disabled = true
+	play_button.disabled = false

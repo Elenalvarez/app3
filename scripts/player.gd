@@ -73,7 +73,7 @@ func motion_ctrl():
 			sprite.set_animation("fall")
 	play_animation.rpc()
 
-@rpc("call_local")
+@rpc("any_peer")
 func play_animation():
 	sprite.play()
 
@@ -106,13 +106,22 @@ func _on_hit_point_body_entered(body):
 	if body is Player and velocity.y >= 0 and body != self:
 		audio_hit.play()
 		body.damage_ctrl()
-		change_score(kill_score)
+		change_score(body.kill_score)
 		jump_ctrl(0.75)
 
 func change_score(score: int):
 	for i in GameManager.Players:
 		if str(GameManager.Players[i].id) == name:
 			GameManager.Players[i].score += score
+
+@rpc("any_peer")
+func send_score_information(id: int, score: int):
+	if GameManager.Players.has(id):
+		GameManager.Players[id]["score"]+= score
+	
+	if multiplayer.is_server():
+		for i in GameManager.Players:
+			send_score_information.rpc(i, GameManager.Players[i].score)
 
 func make_big():
 	is_powered = true

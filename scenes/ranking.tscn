@@ -1,70 +1,112 @@
-[gd_scene load_steps=5 format=3 uid="uid://d32g4j50bkvaf"]
+[gd_scene load_steps=8 format=3 uid="uid://d32g4j50bkvaf"]
 
+[ext_resource type="Script" path="res://scripts/ranking.gd" id="1_45f7h"]
 [ext_resource type="Texture2D" uid="uid://lo5nmsmo8sei" path="res://assets/Pixel Adventure 1/Free/Main Characters/Mask Dude/Jump (32x32).png" id="1_r6del"]
 [ext_resource type="Texture2D" uid="uid://opibuc3xrpq" path="res://assets/Pixel Adventure 1/Free/Main Characters/Ninja Frog/Jump (32x32).png" id="2_ult61"]
 [ext_resource type="Texture2D" uid="uid://bpsphi4ux1qjt" path="res://assets/Pixel Adventure 1/Free/Main Characters/Pink Man/Jump (32x32).png" id="3_3c5qu"]
 [ext_resource type="Texture2D" uid="uid://btv6557a1f3dy" path="res://assets/Pixel Adventure 1/Free/Main Characters/Virtual Guy/Jump (32x32).png" id="4_8sd7u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7bp3"]
+bg_color = Color(0.27451, 0.67451, 0.65098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fh0l2"]
+properties/0/path = NodePath("VBoxContainer/MaskGuy/Label:text")
+properties/0/spawn = true
+properties/0/sync = true
 
 [node name="Ranking" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1918.0
+offset_bottom = -725.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_45f7h")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -156.0
+offset_right = 89.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y7bp3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 180.0
-offset_bottom = 226.0
-theme_override_constants/separation = 10
+offset_right = 232.0
+offset_bottom = 351.0
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Player1" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MaskGuy" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Player1"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MaskGuy"]
 layout_mode = 2
 texture = ExtResource("1_r6del")
 
-[node name="Label" type="Label" parent="VBoxContainer/Player1"]
+[node name="Label" type="Label" parent="VBoxContainer/MaskGuy"]
 layout_mode = 2
-text = "100"
+theme_override_font_sizes/font_size = 40
+text = "0"
 
-[node name="Player2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="NinjaFrog" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Player2"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/NinjaFrog"]
 layout_mode = 2
 texture = ExtResource("2_ult61")
 
-[node name="Label" type="Label" parent="VBoxContainer/Player2"]
+[node name="Label" type="Label" parent="VBoxContainer/NinjaFrog"]
 layout_mode = 2
-text = "250
+theme_override_font_sizes/font_size = 40
+text = " 0
 "
 
-[node name="Player3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PinkMan" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Player3"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PinkMan"]
 layout_mode = 2
 texture = ExtResource("3_3c5qu")
 
-[node name="Label" type="Label" parent="VBoxContainer/Player3"]
+[node name="Label" type="Label" parent="VBoxContainer/PinkMan"]
 layout_mode = 2
-text = "50"
+theme_override_font_sizes/font_size = 40
+text = "0"
 
-[node name="Player4" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VirtualGirl" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Player4"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VirtualGirl"]
 layout_mode = 2
 texture = ExtResource("4_8sd7u")
 
-[node name="Label" type="Label" parent="VBoxContainer/Player4"]
+[node name="Label" type="Label" parent="VBoxContainer/VirtualGirl"]
 layout_mode = 2
-text = "333"
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fh0l2")

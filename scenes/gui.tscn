@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://3s0grscupi1u"]
+[gd_scene load_steps=6 format=3 uid="uid://3s0grscupi1u"]
 
 [ext_resource type="Texture2D" uid="uid://chmqvcefhg07p" path="res://assets/ui/Pixel UI pack 3/time_bar.png" id="1_blumw"]
 [ext_resource type="PackedScene" uid="uid://danht5rdmde06" path="res://scenes/joystick.tscn" id="1_j2uf6"]
 [ext_resource type="Texture2D" uid="uid://b86qi53uo2b10" path="res://assets/ui/LargeHandleFilledGrey.png" id="2_bm0nw"]
 [ext_resource type="Texture2D" uid="uid://fylc0chx0im" path="res://assets/ui/Pixel UI pack 3/time_bar_progress.png" id="2_ojwdp"]
+[ext_resource type="PackedScene" uid="uid://d32g4j50bkvaf" path="res://scenes/ranking.tscn" id="5_licyx"]
 
 [node name="GUI" type="CanvasLayer"]
 process_mode = 3
+
+[node name="Ranking" parent="." instance=ExtResource("5_licyx")]
 
 [node name="timebar" type="TextureProgressBar" parent="."]
 visible = false
