@@ -11,6 +11,7 @@ const PORT = 8531
 @onready var ninjafrog_button = $HBoxContainer3/NinjaFrog
 @onready var pinkman_button = $HBoxContainer3/PinkMan
 @onready var virtualgirl_button = $HBoxContainer3/VirtualGirl
+@onready var wait_players = $WaitPlayers
 
 func _ready():
 	multiplayer.peer_connected.connect(peer_connected)
@@ -73,7 +74,9 @@ func _on_play_pressed():
 	if all_choose():
 		select_level.rpc("res://scenes/levels/prueba.tscn")
 	else:
-		print("Espera a que todos elijan personaje")
+		wait_players.visible = true
+		await get_tree().create_timer(3).timeout
+		wait_players.visible = false
 
 @rpc("any_peer", "call_local")
 func select_level(file: String):

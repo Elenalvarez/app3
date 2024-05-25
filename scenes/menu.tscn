@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c42itvheh0f01"]
+[gd_scene load_steps=12 format=3 uid="uid://c42itvheh0f01"]
 
 [ext_resource type="Texture2D" uid="uid://l6x2ue0il3qr" path="res://assets/Pixel Adventure 1/Free/Background/Background_2.png" id="1_n5jxp"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_vbqba"]
@@ -10,6 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://4dqe6rghol8q" path="res://assets/Pixel Adventure 1/VirtualGirl-portrait.png" id="7_pvvv7"]
 [ext_resource type="Texture2D" uid="uid://bk0l7xy87yh53" path="res://assets/Pixel Adventure 1/PinkMan-portrait-disabled.png" id="9_cencq"]
 [ext_resource type="Texture2D" uid="uid://b0ba3a56vf6rb" path="res://assets/Pixel Adventure 1/VirtualGirl-portrait-disabled.png" id="11_0t7op"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uimjj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 5
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_size = 10
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -120,6 +130,27 @@ texture_disabled = ExtResource("9_cencq")
 layout_mode = 2
 texture_normal = ExtResource("7_pvvv7")
 texture_disabled = ExtResource("11_0t7op")
+
+[node name="WaitPlayers" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -38.5
+offset_right = 278.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0901961, 0.223529, 0.466667, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_uimjj")
+text = " Wait for other players "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HBoxContainer2/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="HBoxContainer2/Play" to="." method="_on_play_pressed"]

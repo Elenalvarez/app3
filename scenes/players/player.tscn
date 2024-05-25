@@ -121,14 +121,6 @@ volume_db = -10.0
 [node name="Hit" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("3_yu2dm")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -48)
-zoom = Vector2(2, 2)
-rotation_smoothing_enabled = true
-drag_vertical_enabled = true
-drag_top_margin = 1.0
-drag_bottom_margin = 0.0
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_6m7gn")
 
