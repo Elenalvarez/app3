@@ -68,7 +68,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bq0dy"]
 radius = 9.0
-height = 22.0
+height = 21.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s5s5"]
 size = Vector2(13, 2)
@@ -82,12 +82,13 @@ properties/1/spawn = true
 properties/1/sync = true
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gui")]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 collision_mask = 31
 platform_floor_layers = 4294901764
 platform_wall_layers = 4
 script = ExtResource("1_woprk")
 gui = NodePath("GUI")
+speed = 200
 
 [node name="GUI" parent="." instance=ExtResource("2_j8i1w")]
 visible = false
@@ -104,12 +105,13 @@ libraries = {
 visibility_layer = 0
 position = Vector2(1, 3)
 shape = SubResource("CapsuleShape2D_bq0dy")
+debug_color = Color(0.588235, 0.305882, 0.301961, 0.419608)
 
 [node name="HitPoint" type="Area2D" parent="."]
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
-position = Vector2(1.5, 16)
+position = Vector2(0.5, 16)
 shape = SubResource("RectangleShape2D_4s5s5")
 
 [node name="Audio" type="Node" parent="."]

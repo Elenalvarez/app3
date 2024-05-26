@@ -267,7 +267,7 @@ animations = [{
 }]
 
 [node name="Player4" instance=ExtResource("1_3t8o6")]
-gravity = 13
+gravity = 12
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_hnwmm")

@@ -13,6 +13,9 @@ const PORT = 8531
 @onready var virtualgirl_button = $HBoxContainer3/VirtualGirl
 @onready var wait_players = $WaitPlayers
 
+var level1 = "res://scenes/levels/prueba.tscn"
+var level2 = "res://scenes/levels/level2.tscn"
+
 func _ready():
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
@@ -72,15 +75,16 @@ func _on_join_pressed():
 
 func _on_play_pressed():
 	if all_choose():
-		select_level.rpc("res://scenes/levels/prueba.tscn")
+		select_level.rpc()
 	else:
 		wait_players.visible = true
 		await get_tree().create_timer(3).timeout
 		wait_players.visible = false
 
 @rpc("any_peer", "call_local")
-func select_level(file: String):
-	get_tree().change_scene_to_file(file)
+func select_level():
+	var level_list = [level1, level2]
+	get_tree().change_scene_to_file(level_list.pick_random())
 
 @rpc("any_peer", "call_local")
 func choose_character(character: String):

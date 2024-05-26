@@ -22,6 +22,7 @@ animations = [{
 radius = 18.5607
 
 [node name="Trap" instance=ExtResource("1_fdcdd")]
+scale = Vector2(2, 2)
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_qlurs")

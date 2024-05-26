@@ -10,9 +10,9 @@ var jump_count = 0
 var max_jump = 2
 
 @export var gui: CanvasLayer
-@export var speed = 128
+@export var speed = 150
 @export var gravity = 16
-@export var jump = 368
+@export var jump = 400
 
 @onready var sprite = $AnimatedSprite2D
 @onready var audio_jump = $Audio/Jump

@@ -22,6 +22,7 @@ animations = [{
 size = Vector2(11, 5)
 
 [node name="Spikes" instance=ExtResource("1_sgjm4")]
+scale = Vector2(2, 2)
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_i8v88")

@@ -315,15 +315,13 @@ animations = [{
 }]
 
 [node name="Player1" instance=ExtResource("1_0vr0w")]
-speed = 100
-jump = 400
+speed = 175
+jump = 425
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_hnwmm")
-animation = &"double_jump"
+animation = &"idle"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
-[node name="Timer" parent="." index="8"]
+[node name="Timer" parent="." index="7"]
 wait_time = 7.0
