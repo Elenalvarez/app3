@@ -569,7 +569,7 @@ _spawnable_scenes = PackedStringArray("res://scenes/players/player_1.tscn")
 spawn_path = NodePath("../Player")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 40.0
+wait_time = 120.0
 autostart = true
 
 [node name="Label" type="Label" parent="."]
