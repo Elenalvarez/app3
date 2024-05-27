@@ -1,0 +1,228 @@
+[gd_scene load_steps=17 format=3 uid="uid://bj8ah4xhy8b2g"]
+
+[ext_resource type="Script" path="res://scripts/Start.gd" id="1_r8w0i"]
+[ext_resource type="Texture2D" uid="uid://l6x2ue0il3qr" path="res://assets/Pixel Adventure 1/Free/Background/Background_2.png" id="2_1qi8a"]
+[ext_resource type="FontFile" uid="uid://cup5lkyj26aby" path="res://assets/ui/PixelifySans-Regular.ttf" id="3_soc7h"]
+[ext_resource type="StyleBox" uid="uid://cxm55bvlowtdw" path="res://assets/ui/new_style_box_flat.tres" id="4_eb8lh"]
+[ext_resource type="Texture2D" uid="uid://b8eaoq2ubcw1f" path="res://assets/ui/Exit.png" id="5_0wg7x"]
+[ext_resource type="Texture2D" uid="uid://bjo61jb557x2u" path="res://assets/ui/Gear.png" id="6_nxq2e"]
+[ext_resource type="Texture2D" uid="uid://cssuahpkbfsvp" path="res://assets/ui/Chevron-Arrow-Left.png" id="7_68ho7"]
+[ext_resource type="Texture2D" uid="uid://tbc8tyenmuyg" path="res://assets/ui/Speaker-0.png" id="8_jel6i"]
+[ext_resource type="Texture2D" uid="uid://e10fwcfjj2y0" path="res://assets/ui/Game-Controller.png" id="9_xt8q0"]
+[ext_resource type="Texture2D" uid="uid://c43ac208s7bwc" path="res://assets/ui/UI_Flags_Indivudal_g865.png" id="10_bixcx"]
+[ext_resource type="Texture2D" uid="uid://cpo7w4n7yaekn" path="res://assets/ui/UI_Flags_Indivudal_g797.png" id="11_lbxib"]
+[ext_resource type="Texture2D" uid="uid://efn50771jvwc" path="res://assets/ui/UI_Flags_Indivudal_g874.png" id="12_llr22"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pea62"]
+bg_color = Color(0.619608, 0.333333, 0.25098, 1)
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.827451, 0.501961, 0.411765, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5qae"]
+bg_color = Color(0.619608, 0.333333, 0.25098, 1)
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.619608, 0.333333, 0.25098, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjwta"]
+bg_color = Color(0.827451, 0.501961, 0.411765, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.827451, 0.501961, 0.411765, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ops7u"]
+bg_color = Color(0.619608, 0.333333, 0.25098, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.619608, 0.333333, 0.25098, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8w0i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1qi8a")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 150.0
+offset_right = 20.0
+offset_bottom = 173.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_soc7h")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = ExtResource("4_eb8lh")
+text = " Smash Friends "
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.5
+offset_top = -280.0
+offset_right = 93.5
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_soc7h")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("4_eb8lh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pea62")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+text = " Play "
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 58.0
+offset_right = 118.0
+offset_bottom = 160.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("5_0wg7x")
+expand_icon = true
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2040.0
+offset_top = 58.0
+offset_right = 2124.0
+offset_bottom = 160.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ops7u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("6_nxq2e")
+expand_icon = true
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -557.0
+offset_top = -103.0
+offset_right = 559.0
+offset_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_eb8lh")
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = 89.0
+offset_bottom = 95.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("7_68ho7")
+expand_icon = true
+
+[node name="MusicButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 85.0
+offset_right = 441.0
+offset_bottom = 187.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("8_jel6i")
+expand_icon = true
+
+[node name="ControlButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 649.0
+offset_top = 85.0
+offset_right = 763.0
+offset_bottom = 187.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("9_xt8q0")
+expand_icon = true
+
+[node name="SpanishButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 291.0
+offset_right = 435.0
+offset_bottom = 425.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("10_bixcx")
+expand_icon = true
+
+[node name="EnglishButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 293.0
+offset_right = 635.0
+offset_bottom = 427.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("11_lbxib")
+expand_icon = true
+
+[node name="JapaneseButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 297.0
+offset_right = 833.0
+offset_bottom = 431.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wjwta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h5qae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5qae")
+icon = ExtResource("12_llr22")
+expand_icon = true
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

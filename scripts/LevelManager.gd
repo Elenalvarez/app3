@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var PlayerScene0: PackedScene
-@export var PlayerScene1: PackedScene
-@export var PlayerScene2: PackedScene
-@export var PlayerScene3: PackedScene
+var PlayerScene0 = load("res://scenes/players/player_1.tscn")
+var PlayerScene1 = load("res://scenes/players/player_2.tscn")
+var PlayerScene2 = load("res://scenes/players/player_3.tscn")
+var PlayerScene3 = load("res://scenes/players/player_4.tscn")
 
 var apple = load("res://scenes/coins/apple.tscn")
 var banana = load("res://scenes/coins/banana.tscn")
@@ -38,9 +38,9 @@ func _process(delta):
 		110:
 			if get_node("Fruits").get_child_count() == 4 : add_fruit()
 		70:
-			add_fruit()
+			if get_node("Fruits").get_child_count() == 4 : add_fruit()
 		30:
-			add_fruit()
+			if get_node("Fruits").get_child_count() == 4 : add_fruit()
 
 func respawn(player: Player):
 	var spawn_point_list = get_tree().get_nodes_in_group("PlayerSpawnPoint")
@@ -55,6 +55,8 @@ func _on_fall_zone_body_entered(body):
 
 func _on_timer_timeout():
 	get_tree().paused = true
+	$Winner/WinnerName.text = get_winner_name()
+	$Winner.visible = true
 
 func add_fruit():
 	var fruits_list = [apple, banana, cherry, orange]
@@ -81,6 +83,23 @@ func add_fruit():
 	get_node("Fruits").add_child(fruit)
 	fruit.global_position = spawn_point.global_position
 
+func _on_back_button_pressed():
+	back_to_start.rpc()
+
+func get_winner_name():
+	var max_score = -10000
+	var winner
+	
+	for i in GameManager.Players:
+		if int(GameManager.Players[i].score) > max_score:
+			max_score = GameManager.Players[i].score
+			winner = GameManager.Players[i].name
+	
+	return winner
+
+@rpc("any_peer", "call_local")
+func back_to_start():
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
 
 
 

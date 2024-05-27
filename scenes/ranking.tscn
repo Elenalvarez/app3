@@ -20,6 +20,15 @@ corner_radius_bottom_left = 10
 properties/0/path = NodePath("VBoxContainer/MaskGuy/Label:text")
 properties/0/spawn = true
 properties/0/sync = true
+properties/1/path = NodePath("VBoxContainer/NinjaFrog/Label:text")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("VBoxContainer/PinkMan/Label:text")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("VBoxContainer/VirtualGirl/Label:text")
+properties/3/spawn = true
+properties/3/sync = true
 
 [node name="Ranking" type="Control"]
 layout_mode = 3

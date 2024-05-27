@@ -75,16 +75,16 @@ func _on_join_pressed():
 
 func _on_play_pressed():
 	if all_choose():
-		select_level.rpc()
+		var level_list = [level1, level2]
+		select_level.rpc(level_list.pick_random())
 	else:
 		wait_players.visible = true
 		await get_tree().create_timer(3).timeout
 		wait_players.visible = false
 
 @rpc("any_peer", "call_local")
-func select_level():
-	var level_list = [level1, level2]
-	get_tree().change_scene_to_file(level_list.pick_random())
+func select_level(level: String):
+	get_tree().change_scene_to_file(level)
 
 @rpc("any_peer", "call_local")
 func choose_character(character: String):
